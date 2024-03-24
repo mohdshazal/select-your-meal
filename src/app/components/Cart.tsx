@@ -3,30 +3,30 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import CartItem from './CartItem'
 type CartItem = {
-    id:number
+    id: number
     name: string;
     price: number;
-  };
+};
 const Cart = () => {
-    const [cartItems,setCartItems]=useState<CartItem[]>(
+    const [cartItems, setCartItems] = useState<CartItem[]>(
         [
-            {   
-                id:1,
-                name:"Hummus Plate",
-                price:30
+            {
+                id: 1,
+                name: "Hummus Plate",
+                price: 30
             },
             {
-                id:2,
-                name:"Fried Kebab Plate",
-                price:60
+                id: 2,
+                name: "Fried Kebab Plate",
+                price: 60
             }
         ]
     )
-    let totalPrice:number=0
-    cartItems.map(item=>{
-        totalPrice+=item.price
+    let totalPrice: number = 0
+    cartItems.map(item => {
+        totalPrice += item.price
     })
-    const deleteHandler=(id:number)=>{
+    const deleteHandler = (id: number) => {
         setCartItems(cartItems.filter(item => item.id !== id))
     }
     return (
@@ -43,15 +43,15 @@ const Cart = () => {
                 <div className='p-5 text-center'>
                     <div className='flex gap-3 items-baseline'>
                         <span className='font-bold text-lg whitespace-nowrap'>Jawharat Esham Restaurent</span>
-                       <div className='flex gap-1 items-baseline'>
-                        <Image
-                            src="/star.png"
-                            alt=""
-                            width={15}
-                            height={15}
-                            className='h-3 w-3'
-                        />
-                        <span className='text-[#74e108]'>4.7</span>
+                        <div className='flex gap-1 items-baseline'>
+                            <Image
+                                src="/star.png"
+                                alt=""
+                                width={15}
+                                height={15}
+                                className='h-3 w-3'
+                            />
+                            <span className='text-[#74e108]'>4.7</span>
                         </div>
                     </div>
                     <div className='flex gap-2 mt-2'>
@@ -68,8 +68,8 @@ const Cart = () => {
                     </div>
                 </div>
                 {
-                    cartItems.map((item:CartItem,key)=>{
-                        return <CartItem item={item} key={key} onDelete={deleteHandler}/>
+                    cartItems.map((item: CartItem, key) => {
+                        return <CartItem item={item} key={key} onDelete={deleteHandler} />
                     })
                 }
                 <div className='flex items-center gap-4 px-5 py-7'>
