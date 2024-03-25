@@ -77,7 +77,7 @@ const Modal = ({ onClose }: any) => {
         <div className='flex justify-center gap-3'>
           {
             images.map((image,key)=>{
-              return <div className={`border h-2 w-4 rounded-md mt-2 ${key == imageIndex ? "bg-[#410DEB]" : "bg-[#F3F3F3]"}`}></div>
+              return <div key={key} className={`border h-2 w-4 rounded-md mt-2 ${key == imageIndex ? "bg-[#410DEB]" : "bg-[#F3F3F3]"}`}></div>
             })
           }
           {/* <div className='bg-[#410DEB] border h-2 w-4 rounded-md mt-2'></div>
