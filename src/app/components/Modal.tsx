@@ -2,6 +2,22 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 const Modal = ({ onClose }: any) => {
+  const images = [
+    "/hummus-modal.jpg",
+    "/pan-cake-modal.jpeg",
+    "/hummus-modal.jpg",
+    "/pan-cake-modal.jpeg",
+    "/hummus-modal.jpg",
+    "/pan-cake-modal.jpeg"
+  ]
+  const [imageIndex,setImageIndex]=useState<number>(0)
+  const handleSlide = (type: string) => {
+    if (type === "increment") {
+      setImageIndex(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    } else {
+      setImageIndex(prevIndex => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    }
+  };
   const [isWishListed, setIsWishListed] = useState<boolean>(false)
   const handleWishList = () => [
     setIsWishListed(!isWishListed)
@@ -10,7 +26,7 @@ const Modal = ({ onClose }: any) => {
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75">
       <div className="bg-white w-1/4 rounded-lg">
         <div className='relative'>
-          <Image src="/hummus-modal.jpg" alt="" width={100} height={30} className="w-full h-48" />
+          <Image src={images[imageIndex]} alt="" width={100} height={30} className={`w-full h-48`}/>
           {
             !isWishListed &&
             <Image
@@ -47,6 +63,7 @@ const Modal = ({ onClose }: any) => {
             width={35}
             height={35}
             className='absolute top-24 right-2  bg-white rounded-full p-2 cursor-pointer'
+            onClick={() => handleSlide("increment")}
           />
           <Image
             src="left-arrow.svg"
@@ -54,15 +71,21 @@ const Modal = ({ onClose }: any) => {
             width={35}
             height={35}
             className='absolute top-24 left-2  bg-white rounded-full p-2 cursor-pointer'
+            onClick={() => handleSlide("decrement")}
           />
         </div>
         <div className='flex justify-center gap-3'>
-          <div className='bg-[#410DEB] border h-2 w-4 rounded-md mt-2'></div>
+          {
+            images.map((image,key)=>{
+              return <div className={`border h-2 w-4 rounded-md mt-2 ${key == imageIndex ? "bg-[#410DEB]" : "bg-[#F3F3F3]"}`}></div>
+            })
+          }
+          {/* <div className='bg-[#410DEB] border h-2 w-4 rounded-md mt-2'></div>
           <div className='bg-[#F3F3F3] h-2 w-4 rounded-md mt-2'></div>
           <div className='bg-[#F3F3F3] h-2 w-4 rounded-md mt-2'></div>
           <div className='bg-[#F3F3F3] h-2 w-4 rounded-md mt-2'></div>
           <div className='bg-[#F3F3F3] h-2 w-4 rounded-md mt-2'></div>
-          <div className='bg-[#F3F3F3] h-2 w-4 rounded-md mt-2'></div>
+          <div className='bg-[#F3F3F3] h-2 w-4 rounded-md mt-2'></div> */}
         </div>
         <div className="mx-3 p-4">
           <div className="flex justify-between mt-1">
